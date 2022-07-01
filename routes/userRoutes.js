@@ -18,6 +18,9 @@ router
     .get(users.renderRegister)
     .post(catchAsync(users.register));
 
+// user profile:
+router.get('/users/:id', catchAsync(users.userProfile));
+
 router
     .route('/login')
     .get(users.renderLogin)

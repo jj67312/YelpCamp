@@ -1,0 +1,15 @@
+<%- layout('layouts/boilerplate') %>
+
+    <h1>
+        Campgrounds posted by <%= user.username %>
+    </h1>
+
+    <ul>
+        <% for(let campground of userCampgrounds) { %>
+            <li>
+                <a href="/campgrounds/<%= campground._id %>">
+                    <%= campground.title %>
+                </a>
+            </li>
+            <% } %>
+    </ul>

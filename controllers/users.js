@@ -1,4 +1,6 @@
 const User = require('../models/user');
+const Campground = require('../models/campground');
+const Review = require('../models/review');
 
 module.exports.register = async (req, res) => {
     try {
@@ -19,6 +21,27 @@ module.exports.register = async (req, res) => {
         req.flash('error', e.message);
         res.redirect('/register');
     }
+};
+
+module.exports.userProfile = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+
+    // find all campground owned by user:
+    const allCampgrounds = await Campground.find({});
+    let userCampgrounds = [];
+    for (let campground of allCampgrounds) {
+        // console.log(campground.author);
+        if (campground.author.equals(user._id)) {
+            userCampgrounds.push(campground);
+        }
+    }
+
+    // find all the reviews owned by user:
+    // const allReviews = await Review.find({});
+    // let userReviews = [];
+
+    res.render('users/profile', { user, userCampgrounds });
 };
 
 module.exports.login = async (req, res) => {
