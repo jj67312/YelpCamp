@@ -35,6 +35,7 @@ if (document.querySelector('form')) {
             input.type === 'textarea`'
         ) {
             firstInput = input;
+            break;
         } else {
             i++;
         }

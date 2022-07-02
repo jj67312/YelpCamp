@@ -13,13 +13,16 @@ const passport = require('passport');
 // User controller
 const users = require('../controllers/users');
 
+// middleware:
+const { isLoggedIn } = require('../middleware');
+
 router
     .route('/register')
     .get(users.renderRegister)
     .post(catchAsync(users.register));
 
 // user profile:
-router.get('/users/:id', catchAsync(users.userProfile));
+router.get('/users/:id', isLoggedIn, catchAsync(users.userProfile));
 
 router
     .route('/login')

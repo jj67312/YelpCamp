@@ -5,11 +5,44 @@
     </h1>
 
     <ul>
-        <% for(let campground of userCampgrounds) { %>
-            <li>
-                <a href="/campgrounds/<%= campground._id %>">
-                    <%= campground.title %>
-                </a>
-            </li>
-            <% } %>
+
+        <% if(userCampgrounds.length===0) {%>
+            Looks like You dont have any campgrounds!
+            <% } else {%>
+                <% for(let campground of userCampgrounds) { %>
+                    <li>
+                        <a href="/campgrounds/<%= campground._id %>">
+                            <%= campground.title %>
+                        </a>
+                    </li>
+                    <% } %>
+                        <% } %>
+    </ul>
+
+    <h1>
+        Reviews given by <%= user.username %>
+    </h1>
+
+    <ul>
+        <% if(userReviews.length===0) {%>
+            You don't have any reviews!
+            <% } else {%>
+                <% for(let i=0; i < userReviews.length; i++) {%>
+                    <li>
+                        <ul>
+                            <li>
+                                <%= userReviews[i].body %>
+                            </li>
+                            <li>
+                                <%= userReviews[i].rating %>
+                            </li>
+                            <li>
+                                <a href="/campgrounds/<%= reviewedCampgrounds[i]._id %>">
+                                    <%= reviewedCampgrounds[i].title %>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <% } %>
+                        <% } %>
     </ul>

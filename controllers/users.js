@@ -38,10 +38,19 @@ module.exports.userProfile = async (req, res) => {
     }
 
     // find all the reviews owned by user:
-    // const allReviews = await Review.find({});
-    // let userReviews = [];
+    const allReviews = await Review.find({});
+    let reviewedCampgrounds = [];
+    let userReviews = [];
+    for (let review of allReviews) {
+        if (review.author.equals(user._id)) {
+            const reviewCamp = await Campground.findById(review.campground);
+            console.log(reviewCamp);
+            userReviews.push(review);
+            reviewedCampgrounds.push(reviewCamp);
+        }
+    }
 
-    res.render('users/profile', { user, userCampgrounds });
+    res.render('users/profile', { user, userCampgrounds, userReviews, reviewedCampgrounds });
 };
 
 module.exports.login = async (req, res) => {
