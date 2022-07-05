@@ -3,73 +3,64 @@ package JavaPrograms;
 import java.util.*;
 
 class Codechef {
-  public static void main(String[] args) throws java.lang.Exception {
-    Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws java.lang.Exception {
+        Scanner sc = new Scanner(System.in);
 
-    int T = sc.nextInt();
+        solve();
 
-    while (T-- > 0) {
-      int n = sc.nextInt();
-      int m = sc.nextInt();
-      int k = sc.nextInt();
+        sc.close();
+    }
 
-      int A[] = new int[n];
-      for (int i = 0; i < n; i++) {
-        A[i] = sc.nextInt();
-      }
+    static void printArray(int arr[]) {
+        System.out.println("\nArray: ");
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+    }
 
-      Arrays.sort(A);
+    static void solve() {
+        Scanner scanner = new Scanner(System.in);
 
-      HashMap<Integer, Integer> lessK = new HashMap<>();
-      HashMap<Integer, Integer> moreK = new HashMap<>();
-      HashMap<Integer, Integer> equalK = new HashMap<>();
+        String s1 = scanner.nextLine();
+        String s2 = scanner.nextLine();
 
-      for (int i = 0; i < n; i++) {
-        if (A[i] < k) {
-          lessK.put(i, A[i]);
+        char arr1[] = s1.toCharArray();
+        char arr2[] = s2.toCharArray();
+
+        int p1 = 0, p2 = 0;
+        int n1 = arr1.length;
+        int n2 = arr2.length;
+        int equalCount = 0;
+
+        int p1Copy = -1;
+
+        while (p1Copy != 0) {
+            if (arr1[p1] == arr2[p2]) {
+                System.out.println();
+                System.out.println("p1 = " + p1);
+                System.out.println("p2 = " + p2);
+                System.out.println("p1Copy = " + p1Copy);
+                System.out.println("equalcount = " + equalCount);
+                System.out.println("arr1[p1] = " + arr1[p1]);
+                System.out.println("arr2[p2] = " + arr2[p2]);
+                System.out.println();
+                p1 = (p1 + 1) % n1;
+                p1Copy = p1;
+                p2 = (p2 + 1) % n2;
+                equalCount++;
+            } else {
+                p2 = (p2 + 1) % n2;
+                equalCount = 0;
+            }
         }
 
-        else if (A[i] > k) {
-          moreK.put(i, A[i]);
-        }
-
-        else {
-          equalK.put(i, A[i]);
-        }
-      }
-
-      System.out.println("Less than K: " + lessK);
-      System.out.println("Equal to K: " + equalK);
-      System.out.println("More than K: " + moreK);
-
-      boolean allLessThanK = false;
-      for (int i = 0; i < k; i++) {
-        if (lessK.containsValue(i)) {
-          allLessThanK = true;
+        if (equalCount == n1) {
+            System.out.println("Yes");
         } else {
-          allLessThanK = false;
-          break;
+            System.out.println("No");
         }
-      }
 
-      System.out.println("All less than K: " + allLessThanK);
-
-      if (allLessThanK && (lessK.size() + moreK.size() >= m)) {
-        System.out.println("Yes\n");
-      } else {
-        System.out.println("No\n");
-      }
-
+        scanner.close();
     }
-
-    sc.close();
-  }
-
-  static void printArray(int arr[]) {
-    System.out.println("\nArray: ");
-    for (int i = 0; i < arr.length; i++) {
-      System.out.print(arr[i] + " ");
-    }
-    System.out.println();
-  }
 }

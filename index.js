@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+    require('dotenv').config();
 }
 
 const express = require('express');
@@ -49,14 +49,14 @@ const User = require('./models/user');
 */
 const mongoose = require('mongoose');
 main()
-  .then((res) => {
-    console.log('Successfully connected to mongoDB!');
-  })
-  .catch((err) => {
-    console.log('Connection to mongoDB failed!');
-  });
+    .then((res) => {
+        console.log('Successfully connected to mongoDB!');
+    })
+    .catch((err) => {
+        console.log('Connection to mongoDB failed!');
+    });
 async function main() {
-  await mongoose.connect('mongodb://localhost:27017/yelpcamp');
+    await mongoose.connect('mongodb://localhost:27017/yelpcamp');
 }
 
 // telling express that we will be using ejsMate instead of the default one
@@ -82,14 +82,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // express-session settings
 const sessionConfig = {
-  secret: 'thisshouldbeabettersecret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    httpOnly: true,
-    expires: Date.now() * 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
-  },
+    secret: 'thisshouldbeabettersecret',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() * 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
 };
 app.use(session(sessionConfig));
 
@@ -105,10 +105,10 @@ passport.deserializeUser(User.deserializeUser());
 
 // Middleware for flash:
 app.use((req, res, next) => {
-  res.locals.currentUser = req.user;
-  res.locals.success = req.flash('success');
-  res.locals.error = req.flash('error');
-  next();
+    res.locals.currentUser = req.user;
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
 });
 
 // ROUTES:
@@ -117,18 +117,18 @@ app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
 app.all('*', (req, res, next) => {
-  next(new ExpressError('Page not found!', 404));
+    next(new ExpressError('Page not found!', 404));
 });
 
 // Error handling
 app.use((err, req, res, next) => {
-  const { statusCode = 500 } = err;
-  if (!err.message) {
-    err.message = 'Oh No, something went wrong!';
-  }
-  res.status(statusCode).render('error', { err });
+    const { statusCode = 500 } = err;
+    if (!err.message) {
+        err.message = 'Oh No, something went wrong!';
+    }
+    res.status(statusCode).render('error', { err });
 });
 
 app.listen(3000, (req, res) => {
-  console.log('YelpCamp running on port 3000');
+    console.log('YelpCamp running on port 3000');
 });

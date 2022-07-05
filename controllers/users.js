@@ -31,7 +31,6 @@ module.exports.userProfile = async (req, res) => {
     const allCampgrounds = await Campground.find({});
     let userCampgrounds = [];
     for (let campground of allCampgrounds) {
-        // console.log(campground.author);
         if (campground.author.equals(user._id)) {
             userCampgrounds.push(campground);
         }
@@ -44,7 +43,6 @@ module.exports.userProfile = async (req, res) => {
     for (let review of allReviews) {
         if (review.author.equals(user._id)) {
             const reviewCamp = await Campground.findById(review.campground);
-            console.log(reviewCamp);
             userReviews.push(review);
             reviewedCampgrounds.push(reviewCamp);
         }
