@@ -3,64 +3,53 @@ package JavaPrograms;
 import java.util.*;
 
 class Codechef {
-    public static void main(String[] args) throws java.lang.Exception {
-        Scanner sc = new Scanner(System.in);
+  public static void main(String[] args) throws java.lang.Exception {
+    Scanner sc = new Scanner(System.in);
 
-        solve();
+    int T = sc.nextInt();
 
-        sc.close();
-    }
+    while (T-- > 0) {
+      int n = sc.nextInt();
+      int arr[] = new int[n];
+      for (int i = 0; i < n; i++) {
+        arr[i] = sc.nextInt();
+      }
 
-    static void printArray(int arr[]) {
-        System.out.println("\nArray: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-    }
-
-    static void solve() {
-        Scanner scanner = new Scanner(System.in);
-
-        String s1 = scanner.nextLine();
-        String s2 = scanner.nextLine();
-
-        char arr1[] = s1.toCharArray();
-        char arr2[] = s2.toCharArray();
-
-        int p1 = 0, p2 = 0;
-        int n1 = arr1.length;
-        int n2 = arr2.length;
-        int equalCount = 0;
-
-        int p1Copy = -1;
-
-        while (p1Copy != 0) {
-            if (arr1[p1] == arr2[p2]) {
-                System.out.println();
-                System.out.println("p1 = " + p1);
-                System.out.println("p2 = " + p2);
-                System.out.println("p1Copy = " + p1Copy);
-                System.out.println("equalcount = " + equalCount);
-                System.out.println("arr1[p1] = " + arr1[p1]);
-                System.out.println("arr2[p2] = " + arr2[p2]);
-                System.out.println();
-                p1 = (p1 + 1) % n1;
-                p1Copy = p1;
-                p2 = (p2 + 1) % n2;
-                equalCount++;
-            } else {
-                p2 = (p2 + 1) % n2;
-                equalCount = 0;
-            }
-        }
-
-        if (equalCount == n1) {
-            System.out.println("Yes");
+      HashMap<Integer, Integer> map = new HashMap<>();
+      for (int i = 0; i < n; i++) {
+        if (map.containsKey(arr[i])) {
+          map.put(arr[i], map.get(arr[i]) + 1);
         } else {
-            System.out.println("No");
+          map.put(arr[i], 1);
         }
+      }
 
-        scanner.close();
+      boolean isPossible = true;
+      for (Map.Entry<Integer, Integer> element : map.entrySet()) {
+        if (element.getKey() == element.getValue()) {
+          isPossible = true;
+        } else {
+          isPossible = false;
+          break;
+        }
+      }
+
+      if (isPossible) {
+        System.out.println("Yes");
+      } else {
+        System.out.println("No");
+      }
+
     }
+    sc.close();
+  }
+
+  static void printArray(int arr[]) {
+    System.out.println("\nArray: ");
+    for (int i = 0; i < arr.length; i++) {
+      System.out.print(arr[i] + " ");
+    }
+    System.out.println();
+  }
+
 }
