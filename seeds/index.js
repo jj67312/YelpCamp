@@ -21,7 +21,7 @@ const sample = (array) => array[Math.floor(Math.random() * array.length)];
 const seedDB = async () => {
   await Campground.deleteMany({});
 
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 200; i++) {
     // picking up a random number from 0 to 999,
     // since there are 1000 such elements in the cities file
     const random1000 = Math.floor(Math.random() * 1000);
@@ -51,9 +51,12 @@ const seedDB = async () => {
           filename: 'YelpCamp/qj1qzlm5e1tlyhwzzeri',
         },
       ],
-      geometry:{
+      geometry: {
         type: 'Point',
-        coordinates: [72.877393, 19.07599]
+        coordinates: [
+          cities[random1000].longitude,
+          cities[random1000].latitude,
+        ],
       },
       price,
       description:
