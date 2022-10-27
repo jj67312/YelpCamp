@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="/stylesheets/searchbar.css">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YelpCamp</title>
-  <link rel="stylesheet" href="/stylesheets/searchbar.css">
-</head>
+<!-- <form autocomplete="off" method="POST" action="/allTitles" class="d-flex">
+  <div class="autocomplete">
+    <input id="myInput" type="text" class="form-control me-2" name="campTitle" placeholder="Search Campgrounds">
+  </div>
+  <button class="btn btn-success" type="submit">Search</button>
+</form> -->
 
-<body>
-  <form autocomplete="off" method="POST" action="/allTitles">
-    <div class="autocomplete">
-      <input id="myInput" type="text" name="campTitle" placeholder="Search Campgrounds">
-    </div>
-    <input type="submit">
-  </form>
+<form autocomplete="off" method="POST" action="/allTitles" class="d-flex ">
+  <div class="autocomplete">
+    <input id="myInput" class="form-control me-2" type="text" name="campTitle" placeholder="Search Campgrounds">
+  </div>
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 
 
-  <script src="/javascripts/searchbar.js"></script>
-</body>
-
-</html>
+<script src="/javascripts/searchbar.js"></script>

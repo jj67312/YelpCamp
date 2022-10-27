@@ -101,30 +101,6 @@ function autocomplete(inp, arr) {
   });
 }
 
-/*An array containing all the country names in the world:*/
-
-// var courses = [
-//   'Introduction to Athropology',
-//   'Introduction to Archaeology',
-//   'Cultural Anthropology',
-//   'Anthropology',
-//   'Communication',
-//   'Education',
-//   'Education: Early Childhood',
-//   'Education: Elementary Education with a Language and Culture Teaching Specialty',
-//   'Education: Second Language / Elementary Education',
-//   'Education: Secondary Education',
-//   'Education: Special Education',
-//   'English',
-//   'Fine Arts',
-//   'History',
-//   'Pacific-Asian Studies',
-//   'Philosophy',
-//   'Political Science',
-//   'Psychology',
-//   'Sociology',
-//   'Computer Science',
-// ];
 
 async function getTitles() {
   const url = 'http://localhost:3000/allTitles';
@@ -132,9 +108,9 @@ async function getTitles() {
   return response.campTitles;
 }
 
-let courses = [];
 getTitles().then((data) => {
   let courses = data;
+  console.log('Data in search bar:')
   console.log(courses);
   autocomplete(document.getElementById('myInput'), courses);
 });

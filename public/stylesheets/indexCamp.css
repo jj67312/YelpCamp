@@ -1,0 +1,13 @@
+.camp-index-image {
+  height: 100%;
+  width: 100%;
+}
+
+.card-body a {
+  color: black;
+  text-decoration: none;
+}
+
+.card-body a h5:hover{
+  color: rgb(0, 183, 255);
+}
