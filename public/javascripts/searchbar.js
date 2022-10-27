@@ -103,7 +103,7 @@ function autocomplete(inp, arr) {
 
 
 async function getTitles() {
-  const url = 'http://localhost:3000/allTitles';
+  const url = 'https://vast-gorge-29321.herokuapp.com/allTitles' || 'http://localhost:3000/allTitles';
   const response = await (await fetch(url)).json();
   return response.campTitles;
 }
