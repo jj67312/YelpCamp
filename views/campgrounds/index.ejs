@@ -20,7 +20,9 @@
     <div class="col-md-9">
       <div class="card-body">
         <h5 class="card-title">
-          <%= campground.title %>
+          <a href="/campgrounds/<%= campground._id %>">
+            <%= campground.title %>
+          </a>
         </h5>
         <p class="card-text">
           <%= campground.description %>
@@ -40,8 +42,10 @@
 
 <script>
   const mapToken = '<%-process.env.MAPBOX_TOKEN%>'
+  console.log(mapToken)
   let campgrounds = {
     features: <%-JSON.stringify(allCampgrounds)%>,
   }
+  console.log(campgrounds)
 </script>
 <script src="/javascripts/clusterMap.js"></script>

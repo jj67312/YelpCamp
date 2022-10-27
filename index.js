@@ -207,8 +207,26 @@ app.use('/campgrounds', campgroundRoutes);
 app.use('/campgrounds/:id/reviews', reviewRoutes);
 app.use('/', userRoutes);
 
-app.get('/', (req, res) => {
-  res.render('campgrounds/home');
+app.get('/', async (req, res) => {
+  const allCampgrounds = await Campground.find({});
+  res.render('campgrounds/home', { allCampgrounds });
+});
+
+app.get('/allTitles', async (req, res) => {
+  const allCamps = await Campground.find({});
+  const campTitles = allCamps.map((camp) => camp.title);
+  res.json({ campTitles });
+});
+
+app.post('/allTitles', async (req, res) => {
+  const { campTitle } = req.body;
+  console.log(campTitle);
+  const camp = await Campground.findOne({ title: campTitle });
+  if (camp === null) {
+    res.redirect('/');
+  } else {
+    res.redirect(`/campgrounds/${camp._id}`);
+  }
 });
 
 app.all('*', (req, res, next) => {
@@ -228,4 +246,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, (req, res) => {
   console.log(`YelpCamp running on port ${port}`);
 });
-
