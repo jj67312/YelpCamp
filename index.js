@@ -62,7 +62,7 @@ const User = require('./models/user');
 */
 
 // link for connecting to mongo Atlas:
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelpcamp';
+const dbUrl = 'mongodb://localhost:27017/yelpcamp';
 console.log('Main index file: ', dbUrl)
 const mongoose = require('mongoose');
 main()
@@ -83,10 +83,6 @@ app.engine('ejs', ejsMate);
 
 // Set EJS as templating engine
 app.set('view engine', 'ejs');
-/*
-  __dirname represents the directory we are currently working in
-  and views is the folder where all of our ejs templates will be kept
-*/
 app.set('views', path.join(__dirname, 'views'));
 
 // to parse the data for post requests, or in other words:

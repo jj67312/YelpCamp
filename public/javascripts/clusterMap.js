@@ -6,6 +6,8 @@ const map = new mapboxgl.Map({
   zoom: 3,
 });
 
+console.log(campgrounds)
+
 map.addControl(new mapboxgl.NavigationControl());
 
 map.on('load', () => {
@@ -22,6 +24,8 @@ map.on('load', () => {
     clusterMaxZoom: 14, // Max zoom to cluster points on
     clusterRadius: 50, // Radius of each cluster when clustering points (defaults to 50)
   });
+
+  console.log(map)
 
   map.addLayer({
     id: 'clusters',
