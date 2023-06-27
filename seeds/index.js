@@ -1,10 +1,13 @@
 const Campground = require('../models/campground');
 const cities = require('./cities');
 const { places, descriptors } = require('./seedHelpers');
-
 const mongoose = require('mongoose');
-const dbUrl = 'mongodb+srv://our-first-user:VEwTrWVkJyCazgrP@cluster0.tdx74.mongodb.net/?retryWrites=true&w=majority';
-console.log('Seed index file: ', dbUrl)
+const dotEnv = require('dotenv');
+dotEnv.config();
+
+const dbUrl = process.env.DB_URL;
+// const dbUrl = 'mongodb+srv://jayjani002:Mk24QNEPEOrwRbpl@cluster0.trfhrl4.mongodb.net/?retryWrites=true&w=majority';
+console.log('Seed index file: ', dbUrl);
 main()
   .then((res) => {
     console.log('Successfully connected to mongoDB!');
@@ -36,7 +39,7 @@ const seedDB = async () => {
     // Getting a random title by using the seedHelpers file,
     // in which we got to have a descriptor and a place
     const camp = new Campground({
-      author: '62c9e946526c3748638c8088',
+      author: '649af3dc996bd0aeb5bfec95',
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       images: [
