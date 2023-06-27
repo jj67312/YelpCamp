@@ -75,8 +75,6 @@ async function main() {
   await mongoose.connect(dbUrl);
 }
 
-// 'mongodb://localhost:27017/yelpcamp'
-
 // telling express that we will be using ejsMate instead of the default one
 app.engine('ejs', ejsMate);
 
