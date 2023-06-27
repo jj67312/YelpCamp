@@ -63,7 +63,6 @@ const User = require('./models/user');
 
 // link for connecting to mongo Atlas:
 const dbUrl = process.env.DB_URL;
-console.log('Main index file: ', dbUrl)
 const mongoose = require('mongoose');
 main()
   .then((res) => {
